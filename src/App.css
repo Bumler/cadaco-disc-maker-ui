@@ -28,6 +28,51 @@
   color: #61dafb;
 }
 
+.disc-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.disc-plate{
+  position: absolute;
+  background: white;
+  width: 74%;
+  height: 74%;
+  border-radius: 100%;
+  color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.first-name{
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.last-name{
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.team-name{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.hitter-meta{
+  font-size: 12px;
+  font-style: italic;
+  padding-top: 20px;
+}
+
+.position-name{
+  font-weight: bold;
+  padding-top: 20px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
