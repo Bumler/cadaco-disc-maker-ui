@@ -10,30 +10,34 @@ const parsePlayerData = function(playerData){
     const weightedStrikeOuts = playerData.strikeout / 3;
     const weightedSingle = playerData.single / 2;
 
-    return [
-        chartEntry(1, playerData.homeRun, "Home Runs"),
-        chartEntry(10, weightedStrikeOuts, "Strike Out"),
-        chartEntry(2, weightedGroundOuts, "Ground Ball"),
-        chartEntry(5, playerData.triple, "Triple"),
-        chartEntry(8, weightedFlyOuts, "Fly Ball"),
-        chartEntry(13, weightedSingle, "Single"),
-        chartEntry(12, weightedGroundOuts, "Ground Out"),
-        chartEntry(10, weightedStrikeOuts, "Strike Out"),
-        chartEntry(14, weightedFlyOuts, "Flyball"),
-        chartEntry(11, playerData.double, "Double"),
-        chartEntry(6, weightedGroundOuts, "Ground Ball"),
-        chartEntry(7, weightedSingle, "Single"),
-        chartEntry(4, weightedFlyOuts, "Fly Ball"),
-        chartEntry(10, weightedStrikeOuts, "Strike Out"),
-        chartEntry(9, playerData.walk, "Walk"),
-        chartEntry(3, weightedFlyOuts, "Fly Ball"),
-    ];
+    let entries = [];
+
+    addEntry(entries, 1, playerData.homeRun, "Home Runs");
+    addEntry(entries, 10, weightedStrikeOuts, "Strike Out");
+    addEntry(entries, 2, weightedGroundOuts, "Ground Ball");
+    addEntry(entries, 5, playerData.triple, "Triple");
+    addEntry(entries, 8, weightedFlyOuts, "Fly Ball");
+    addEntry(entries, 13, weightedSingle, "Single");
+    addEntry(entries, 12, weightedGroundOuts, "Ground Out");
+    addEntry(entries, 10, weightedStrikeOuts, "Strike Out");
+    addEntry(entries, 14, weightedFlyOuts, "Flyball");
+    addEntry(entries, 11, playerData.double, "Double");
+    addEntry(entries, 6, weightedGroundOuts, "Ground Ball");
+    addEntry(entries, 7, weightedSingle, "Single");
+    addEntry(entries, 4, weightedFlyOuts, "Fly Ball");
+    addEntry(entries, 10, weightedStrikeOuts, "Strike Out");
+    addEntry(entries, 9, playerData.walk, "Walk");
+    addEntry(entries, 3, weightedFlyOuts, "Fly Ball");
+
+    return entries;
 }
 
-const chartEntry = function(label, value, title){
-    return {
-        color: "#ffffff",
-        label, value, title 
+const addEntry = function(entries, label, value, title){
+    if (value > 0){
+        entries.push({
+            color: "#ffffff",
+            label, value, title 
+        });
     }
 }
 
