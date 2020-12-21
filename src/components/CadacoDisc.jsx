@@ -4,10 +4,12 @@ import CadacoFacePlate from './CadacoFacePlate';
 
 export default class CadacoDisc extends Component {
     render() {
+      console.log("Player data retrieved");
+      console.log(this.props.playerData);
       return (
         <div class="disc-container">
-          <CadacoStats/>
-          <CadacoFacePlate/>
+          <CadacoStats playerData={this.props.playerData}/>
+          <CadacoFacePlate playerData={this.props.playerData}/>
         </div>
       );
     }

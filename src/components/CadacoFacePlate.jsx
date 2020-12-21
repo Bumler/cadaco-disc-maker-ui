@@ -1,9 +1,11 @@
 import {Component} from 'react';
 
-const playerData = {"homeRun":53,"groundOut":130,"flyOut":132,"triple":2,"single":155,"double":30,"atBats":597,"walk":72,"strikeout":183,"average":".260","teamId":"121","primaryPosition":"1B","name":"Alonso, Pete","playerId":"624413","firstName":"Pete","lastName":"Alonso"};
+//const playerData = {"homeRun":53,"groundOut":130,"flyOut":132,"triple":2,"single":155,"double":30,"atBats":597,"walk":72,"strikeout":183,"average":".260","teamId":"121","primaryPosition":"1B","name":"Alonso, Pete","playerId":"624413","firstName":"Pete","lastName":"Alonso"};
 
 export default class CadacoFacePlate extends Component {
     render() {
+      const {playerData} = this.props;
+
       return (
         <div class="disc-plate">
           <div>
