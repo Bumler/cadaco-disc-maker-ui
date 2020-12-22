@@ -35,7 +35,7 @@ export default class CadacoDiscs extends Component {
         this.setState({loading: true});
 
         console.log("Trying a request");
-        const url = `http://localhost:3001/disc?teamAbbreviation=${selectedTeam}&season=${selectedSeason}`;
+        const url = `https://7c1nr8gm18.execute-api.us-east-1.amazonaws.com/live/disc?teamAbbreviation=${selectedTeam}&season=${selectedSeason}`;
         const that = this;
         axios.get(url)
             .then(function (response) {
