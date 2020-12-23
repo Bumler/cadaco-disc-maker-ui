@@ -51,6 +51,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
 .first-name{
@@ -60,7 +61,7 @@
 
 .last-name{
   font-weight: bold;
-  font-size: 24px;
+  font-size: 26px;
 }
 
 .team-name{
@@ -98,6 +99,33 @@
     max-width: 512px;
     float: left;
     margin-top: 0px;
+  }
+
+  .first-name{
+    font-weight: bold;
+    font-size: 33px;
+  }
+  
+  .last-name{
+    font-weight: bold;
+    font-size: 38px;
+  }
+  
+  .team-name{
+    font-size: 21px;
+    font-weight: bold;
+  }
+  
+  .hitter-meta{
+    font-size: 18px;
+    font-style: italic;
+    padding-top: 20px;
+  }
+  
+  .position-name{
+    font-weight: bold;
+    padding-top: 20px;
+    font-size: 44px;
   }
 }
 
