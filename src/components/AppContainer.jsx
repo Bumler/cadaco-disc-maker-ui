@@ -30,6 +30,10 @@ export default class AppContainer extends Component {
             return (<ReactToPrint 
                 trigger={() => <a href="#">Print this out!</a>}
                 content={() => this.componentRef}
+                pageStyle="@page {
+                    size: auto;
+                    margin: 10mm;
+                  }"
             />);
         //}
         

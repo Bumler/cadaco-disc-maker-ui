@@ -37,7 +37,7 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  margin-top: 22px;
+  margin-top: 25px;
 }
 
 .disc-plate{
@@ -101,6 +101,10 @@
     margin-top: 0px;
   }
 
+  .disc-container{
+    margin-top: 22px;
+  }
+
   .first-name{
     font-weight: bold;
     font-size: 33px;
@@ -127,9 +131,14 @@
     padding-top: 20px;
     font-size: 44px;
   }
+
+  /* @page {
+    size: auto;
+    margin: 10mm;
+  } */
 }
 
-@page {
+/* @page {
   size: auto;
   margin: 10mm;
-}
+} */
