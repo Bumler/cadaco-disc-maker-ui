@@ -2,46 +2,32 @@ import {Component} from 'react';
 import CadacoDisc from './CadacoDisc';
 import _ from 'lodash';
 import axios from 'axios';
-import {teamOptions} from '../const/TeamOptions';
-import {seasons} from '../const/Seasons';
-import Select from 'react-select';
+import { Container, Row } from 'react-bootstrap';
+import ReactToPrint from 'react-to-print';
 
 export default class CadacoDiscs extends Component {
     constructor(props) {
       super(props);
+      console.log(props);
       this.state = {
           loading: true,
-          selectedTeam: null,
-          selectedTeamName: null,
-          selectedSeason: null
+          playerData: null
        };
     }
 
-    handleTeamChange = (selectedTeam) => {
-        this.setState({selectedTeam: selectedTeam.value, selectedTeamName: selectedTeam.label});
-    }
-
-    handleSeasonChange = (selectedSeason) => {
-        this.setState({selectedSeason: selectedSeason.value});
-    }
-
     getPlayerData(){
-        console.log("Getting player data");
-        console.log(this.state);
-        const {selectedSeason, selectedTeam} = this.state;
+        const {selectedSeason, selectedTeam} = this.props;
         if (!selectedSeason || !selectedTeam)
             return;
         
         this.setState({loading: true});
 
-        console.log("Trying a request");
         const url = `https://7c1nr8gm18.execute-api.us-east-1.amazonaws.com/live/disc?teamAbbreviation=${selectedTeam}&season=${selectedSeason}`;
         const that = this;
         axios.get(url)
             .then(function (response) {
                 const playerData = response.data;
-                that.setState({loading: false, playerData});
-                that.setState({loading: false}); 
+                that.setState({loading: false, playerData}); 
             });
     }
 
@@ -56,34 +42,19 @@ export default class CadacoDiscs extends Component {
     }
 
     componentDidUpdate(prevProps, prevState){
-        if (this.state.selectedSeason !== prevState.selectedSeason
-            || this.state.selectedTeam !== prevState.selectedTeam)
+        if (this.props.selectedSeason !== prevProps.selectedSeason
+            || this.props.selectedTeam !== prevProps.selectedTeam)
             this.getPlayerData();
     }
 
     render() {
       return (
-          <div>
-            <div class= "selector">
-                <Select
-                    onChange={this.handleTeamChange}
-                    options={teamOptions}
-                    placeholder="Select your team"
-                    isSearchable
-                />
-
-                <Select
-                    onChange={this.handleSeasonChange}
-                    options={seasons}
-                    placeholder="Select your season"
-                    isSearchable
-                />
-            </div>
-
+        <div>
             {this.state.loading 
             ? <div>Getting Player Data...</div> 
-            : (<ul>{this.renderDiscs(this.state.playerData)}</ul>)}
-          </div>
+            : (<Container><Row>
+                {this.renderDiscs(this.state.playerData)}</Row></Container>)}
+        </div>
       );
     }
   }

@@ -1,12 +1,12 @@
 import './App.css';
-import CadacoDisc from './components/CadacoDisc';
-import CadacoDiscs from './components/CadacoDiscs';
+import AppContainer from './components/AppContainer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <CadacoDiscs/>
+        <AppContainer/>
       </header>
     </div>
   );

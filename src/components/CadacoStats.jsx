@@ -1,8 +1,6 @@
 import { PieChart } from 'react-minimal-pie-chart';
 import {Component} from 'react';
 
-//const mockData = {"homeRun":53,"groundOut":130,"flyOut":132,"triple":2,"single":155,"double":30,"atBats":597,"walk":72,"strikeout":183,"average":".260","teamId":"121","primaryPosition":"1B","name":"Pete Alonso","playerId":"624413"};
-
 const parsePlayerData = function(playerData){
     console.log(playerData);
     const weightedGroundOuts = playerData.groundOut / 3;
@@ -46,9 +44,9 @@ export default class CadacoStats extends Component {
       return (
         <PieChart
             data={parsePlayerData(this.props.playerData)} 
-            lineWidth={25} 
             paddingAngle={.5}
             label={({ dataEntry }) => dataEntry.label}
+            background="black"
             labelStyle={(index) => ({
                 fill: "black",
                 fontSize: '6px',
