@@ -3,14 +3,12 @@ import CadacoDisc from './CadacoDisc';
 import _ from 'lodash';
 import axios from 'axios';
 import { Container, Row } from 'react-bootstrap';
-import ReactToPrint from 'react-to-print';
 
 export default class CadacoDiscs extends Component {
     constructor(props) {
       super(props);
-      console.log(props);
       this.state = {
-          loading: true,
+          isFetching: false,
           playerData: null
        };
     }
@@ -20,14 +18,14 @@ export default class CadacoDiscs extends Component {
         if (!selectedSeason || !selectedTeam)
             return;
         
-        this.setState({loading: true});
+        this.setState({isFetching: true});
 
         const url = `https://7c1nr8gm18.execute-api.us-east-1.amazonaws.com/live/disc?teamAbbreviation=${selectedTeam}&season=${selectedSeason}`;
         const that = this;
         axios.get(url)
             .then(function (response) {
                 const playerData = response.data;
-                that.setState({loading: false, playerData}); 
+                that.setState({isFetching: false, playerData}); 
             });
     }
 
@@ -47,13 +45,22 @@ export default class CadacoDiscs extends Component {
             this.getPlayerData();
     }
 
+    renderByState(){
+        if (this.state.isFetching)
+            return <div>Getting Player Data...</div>;
+        if (this.state.playerData)
+            return (
+                <Container>
+                    <Row>{this.renderDiscs(this.state.playerData)}</Row>
+                </Container>);
+        
+        return <div>Select a team and season.</div>
+    }
+
     render() {
       return (
         <div>
-            {this.state.loading 
-            ? <div>Getting Player Data...</div> 
-            : (<Container><Row>
-                {this.renderDiscs(this.state.playerData)}</Row></Container>)}
+            {this.renderByState()}
         </div>
       );
     }

@@ -11,7 +11,8 @@ export default class AppContainer extends Component {
       this.state = {
           selectedTeam: null,
           selectedTeamName: null,
-          selectedSeason: null
+          selectedSeason: null,
+          playerData: null
        };
     }
 
@@ -22,6 +23,16 @@ export default class AppContainer extends Component {
 
     handleSeasonChange = (selectedSeason) => {
         this.setState({selectedSeason: selectedSeason.value});
+    }
+
+    renderPrintMessage(){
+        //if (this.state.playerData){
+            return (<ReactToPrint 
+                trigger={() => <a href="#">Print this out!</a>}
+                content={() => this.componentRef}
+            />);
+        //}
+        
     }
 
     render() {
@@ -43,14 +54,11 @@ export default class AppContainer extends Component {
                     />
                 </div>
 
-                <ReactToPrint 
-                    trigger={() => <a href="#">Print this out!</a>}
-                    content={() => this.componentRef}
-                />
+                {this.renderPrintMessage()}
 
                 <CadacoDiscs selectedTeamName={this.state.selectedTeamName}
                     selectedTeam={this.state.selectedTeam}
-                    selectedSeason={this.state.selectedSeason} 
+                    selectedSeason={this.state.selectedSeason}
                     ref={(el) => (this.componentRef = el)}
                 />
             </div>
